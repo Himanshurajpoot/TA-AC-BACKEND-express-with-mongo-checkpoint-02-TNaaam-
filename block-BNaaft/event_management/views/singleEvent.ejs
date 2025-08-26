@@ -1,0 +1,66 @@
+<%- include("./partials/header") %>
+<div class="container page-layout">
+  <%- include("./partials/sidebar") %>
+  <main class="main-content">
+    <section class="event-details">
+      <img src="/images/<%= event.cover_image %>" alt="Cover Image" />
+      <h2><%= event.title %></h2>
+      <p><%= event.summary %></p>
+      <p><strong>Host:</strong> <%= event.host %></p>
+      <p><strong>Start Date:</strong> <%= event.start_date %></p>
+      <p><strong>End Date:</strong> <%= event.end_date %></p>
+      <p><strong>Categories:</strong> <%= event.categories %></p>
+      <p><strong>Location:</strong> <%= event.location %></p>
+
+      <div class="interaction-card">
+        <div class="votes-container">
+          <div class="vote">
+            <a href="/events/<%= event.id %>/like" title="Like">
+              <i class="fa-solid fa-thumbs-up"></i>
+            </a>
+            <span><%= event.likes || 0 %></span>
+          </div>
+          <div class="vote">
+            <a href="/events/<%= event.id %>/dislike" title="Dislike">
+              <i class="fa-solid fa-thumbs-down"></i>
+            </a>
+            <span><%= event.dislikes || 0 %></span>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/events/<%= event.id %>/edit" class="button">✏️ Edit</a>
+          <a href="/events/<%= event.id %>/delete" class="button delete-btn">🗑️ Delete</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="remarks-section">
+      <h3>Add Remark</h3>
+      <form action="/events/<%= event.id %>/remark" method="post">
+        <input type="text" name="title" placeholder="Title" required />
+        <input type="text" name="author" placeholder="Author" required />
+        <input type="submit" value="Add Remark" class="button" />
+      </form>
+
+      <h3>Remarks</h3>
+      <% event.remarks.forEach(remark => { %>
+        <div class="remark-card">
+          <p><strong><%= remark.title %></strong> — <%= remark.author %></p>
+          <div class="remark-interaction">
+            <div class="votes-container">
+              <a href="/remarks/<%= remark.id %>/like"><i class="fa-solid fa-thumbs-up"></i></a>
+              <span><%= remark.likes || 0 %></span>
+              <a href="/remarks/<%= remark.id %>/dislike"><i class="fa-solid fa-thumbs-down"></i></a>
+              <span><%= remark.dislikes || 0 %></span>
+            </div>
+            <div class="actions">
+              <a href="/remarks/<%= remark.id %>/edit" class="button">✏️ Edit</a>
+              <a href="/remarks/<%= remark.id %>/delete" class="button delete-btn">🗑️ Delete</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </section>
+  </main>
+</div>
+<%- include("./partials/footer") %>

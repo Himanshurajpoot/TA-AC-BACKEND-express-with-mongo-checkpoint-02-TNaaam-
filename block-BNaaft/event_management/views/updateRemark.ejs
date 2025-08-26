@@ -1,0 +1,20 @@
+<%- include("./partials/header") %>
+
+
+<main class="main-content">
+  <section class="form-section">
+    <h2>Update Remark</h2>
+    <form action="/remarks/<%= remark.id %>" method="POST" class="form-card">
+      
+      <label for="title">Title</label>
+      <input type="text" name="title" value="<%= remark.title %>" required />
+
+      <label for="author">Author</label>
+      <input type="text" name="author" value="<%= remark.author %>" required />
+
+      <input type="submit" value="Update Remark" class="submit-btn" />
+    </form>
+  </section>
+</main>
+
+<%- include("./partials/footer") %>
