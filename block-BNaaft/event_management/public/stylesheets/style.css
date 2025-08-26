@@ -283,8 +283,13 @@ form textarea {
 }
 
 .remarks-section h3 {
+  margin-top:1rem ;
   margin-bottom: 1rem;
   color: #1a73e8;
+}
+
+.button{
+margin-top: 1rem;
 }
 
 .remark-card {
